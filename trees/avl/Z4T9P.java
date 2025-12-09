@@ -14,20 +14,15 @@ public int contarNosNaoBalanceados() {
 }
 
 public int verificarAVL(No no, Contador contador) {
-    if (no == null) return -1;
+    if (no == null) return 0;
 
     int alturaEsquerda = verificarAVL(no.esquerda, contador); 
-    if (alturaEsquerda == -2) return -2;
-
     int alturaDireita = verificarAVL(no.direita, contador);
-    if (alturaDireita == -2) return -2;
-
     int fatorBalanceamento = alturaEsquerda - alturaDireita;
 
-    if (fatorBalanceamento >= -1 && fatorBalanceamento <= 1) {
-        return 1 + Math.max(alturaEsquerda, alturaDireita);
-    } else {
+    if (!(fatorBalanceamento >= -1 && fatorBalanceamento <= 1)) {
         contador.addQntd();
-        return -2;
     }
+
+    return 1 + Math.max(alturaEsquerda, alturaDireita);
 }
